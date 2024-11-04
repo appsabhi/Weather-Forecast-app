@@ -2,7 +2,7 @@ import Search from "../assets/search.svg";
 import humidity from "../assets/humidity.png";
 import windy from "../assets/windy.png";
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link  } from "react-router-dom";
 import back_to_home from "../assets/back-button.png" 
 
 const Weather = () => {
@@ -40,6 +40,7 @@ const Weather = () => {
     }
   };
 
+ 
   return (
     <>
       <div className={Weatherdata ? "w-1/4 h-5/6 bg-cyan-700  rounded-lg  shadow-xl shadow-black flex flex-col items-center " :"w-1/4 h-1/4 bg-cyan-700  rounded-lg  shadow-xl shadow-black flex justify-center items-center "}>
