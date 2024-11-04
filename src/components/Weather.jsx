@@ -2,6 +2,8 @@ import Search from "../assets/search.svg";
 import humidity from "../assets/humidity.png";
 import windy from "../assets/windy.png";
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import back_to_home from "../assets/back-button.png" 
 
 const Weather = () => {
   let [Weatherdata, setweatherdata] = useState(false);
@@ -34,16 +36,17 @@ const Weather = () => {
       });
     } catch (error) {
       console.error(error.message);
-      setweatherdata(false);
+      setweatherdata(false)
     }
   };
 
   return (
     <>
-      <div className="w-1/4 h-5/6 bg-cyan-600  rounded-lg  shadow-xl shadow-black flex flex-col items-center ">
+      <div className={Weatherdata ? "w-1/4 h-5/6 bg-cyan-700  rounded-lg  shadow-xl shadow-black flex flex-col items-center " :"w-1/4 h-1/4 bg-cyan-700  rounded-lg  shadow-xl shadow-black flex justify-center items-center "}>
         <div className="w-full  h-1/5 rounded-2xl    flex justify-center items-center gap-2">
+        <Link to={'/'}>       <img className="w-10 h-10" src={back_to_home} alt="" />  </Link>
           <input
-            className="rounded-3xl h-1/3 w-7/12"
+            className={Weatherdata  ? "rounded-3xl h-1/3 w-7/12" :"rounded-3xl h-10 w-7/12"}
             type="text"
             placeholder="  Search..."
             ref={inputref}
@@ -59,14 +62,7 @@ const Weather = () => {
           </p>
         </div>
 
-        {!Weatherdata ? (
-          <div className="flex flex-col items-center justify-center h-3/5 text-center">
-            <p className="text-white text-2xl">Welcome to Weather App!</p>
-            <p className="text-white">
-              Enter a city name above to get started.
-            </p>
-          </div>
-        ) : (
+        {Weatherdata && (
           <div className="w-full h-2/5  flex flex-col items-center cursor-text">
             <img className="w-1/2 h-4/5 " src={Weatherdata.icon} alt="" />
             <p>{Weatherdata.description}</p>
