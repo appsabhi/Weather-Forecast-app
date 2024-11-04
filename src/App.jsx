@@ -6,7 +6,7 @@ const Weather = React.lazy(() => import("./components/Weather"));
 
 const App = () => {
   return (
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="w-full h-full flex justify-center items-center bg-gradient-to-b from-violet-600 to-pink-400">
       <Routes>
         <Route path="/" element={<Welcome_Page />} />
         <Route

@@ -43,7 +43,7 @@ const Weather = () => {
  
   return (
     <>
-      <div className={Weatherdata ? "w-1/4 h-5/6 bg-cyan-700  rounded-lg  shadow-xl shadow-black flex flex-col items-center " :"w-1/4 h-1/4 bg-cyan-700  rounded-lg  shadow-xl shadow-black flex justify-center items-center "}>
+      <div className={Weatherdata ? "w-full  sm:w-full     md:w-1/4 lg:w-1/4 xl:w-1/4 h-5/6 bg-gradient-to-b from-blue-600 to-cyan-500  rounded-lg  shadow-xl shadow-black flex flex-col items-center " :"sm:w-full     md:w-1/4 lg:w-1/4 xl:w-1/4  h-1/4 bg-gradient-to-b from-blue-600 to-cyan-500  rounded-lg  shadow-xl shadow-black flex justify-center items-center "}>
         <div className="w-full  h-1/5 rounded-2xl    flex justify-center items-center gap-2">
         <Link to={'/'}>       <img className="w-10 h-10" src={back_to_home} alt="" />  </Link>
           <input
@@ -88,7 +88,7 @@ const Weather = () => {
 
                 <div>
                   <p>{Weatherdata.Humidity}%</p>
-                  <p>Humidity</p>
+                  <p className="sm:flex sm: md:flex md:flex-nowrap lg:flex  lg:flex-nowrap ">Humidity</p>
                 </div>
               </div>
 
@@ -96,7 +96,7 @@ const Weather = () => {
                 <img className="w-10 h-10" src={windy} alt="" />
                 <div>
                   <p> {Weatherdata.Wind}km/h</p>
-                  <p>Wind Speed</p>
+                  <p className=" w-full sm:flex sm:flex-nowrap  md:flex md:flex-nowrap lg:flex lg:flex-nowrap">Wind Speed</p>
                 </div>
               </div>
             </div>
