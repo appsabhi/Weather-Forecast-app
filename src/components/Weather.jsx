@@ -4,7 +4,7 @@ import windy from "../assets/windy.png";
 import { useRef, useState } from "react";
 
 const Weather = () => {
-  let [Weatherdata, setweatherdata] = useState({});
+  let [Weatherdata, setweatherdata] = useState(false);
   let inputref = useRef();
 
   const search = async (city) => {
@@ -34,10 +34,9 @@ const Weather = () => {
       });
     } catch (error) {
       console.error(error.message);
+      setweatherdata(false);
     }
   };
-
- 
 
   return (
     <>
@@ -50,7 +49,7 @@ const Weather = () => {
             ref={inputref}
           />
           <p
-            className="w-10 h-10 bg-white rounded-full relative "
+            className="w-10 h-10 bg-white rounded-full relative hover:cursor-pointer"
             onClick={() => {
               search(inputref.current.value);
             }}
@@ -60,38 +59,52 @@ const Weather = () => {
           </p>
         </div>
 
-        <div className="w-full h-2/5  flex flex-col items-center cursor-text">
-          <img className="w-1/2 h-4/5 " src={Weatherdata.icon} alt="" />
-          <p>{Weatherdata.description}</p>
-        </div>
-        <div className="w-full h-1/5 flex flex-col items-center justify-evenly">
-          <p className=" text-white text-6xl leading- font-semibold ">
-            {Weatherdata.Temperature}°c
-          </p>
-
-          <p className="text-white text-4xl leading-10">
-            {Weatherdata.Location}
-          </p>
-        </div>
-
-        <div className="w-11/12 h-1/5 flex  justify-between gap-10">
-          <div className="w-1/2 flex items-center justify-evenly">
-            <img className="w-10 h-10 " src={humidity} alt="" />
-
-            <div>
-              <p>{Weatherdata.Humidity}%</p>
-              <p>Humidity</p>
-            </div>
+        {!Weatherdata ? (
+          <div className="flex flex-col items-center justify-center h-3/5 text-center">
+            <p className="text-white text-2xl">Welcome to Weather App!</p>
+            <p className="text-white">
+              Enter a city name above to get started.
+            </p>
           </div>
-
-          <div className="w-1/2 flex items-center justify-evenly">
-            <img className="w-10 h-10" src={windy} alt="" />
-            <div>
-              <p> {Weatherdata.Wind}km/h</p>
-              <p>Wind Speed</p>
-            </div>
+        ) : (
+          <div className="w-full h-2/5  flex flex-col items-center cursor-text">
+            <img className="w-1/2 h-4/5 " src={Weatherdata.icon} alt="" />
+            <p>{Weatherdata.description}</p>
           </div>
-        </div>
+        )}
+
+        {Weatherdata && (
+          <>
+            <div className="w-full h-1/5 flex flex-col items-center justify-evenly">
+              <p className=" text-white text-6xl leading- font-semibold ">
+                {Weatherdata.Temperature}°c
+              </p>
+
+              <p className="text-white text-4xl leading-10">
+                {Weatherdata.Location}
+              </p>
+            </div>
+
+            <div className="w-11/12 h-1/5 flex  justify-between gap-10">
+              <div className="w-1/2 flex items-center justify-evenly">
+                <img className="w-10 h-10 " src={humidity} alt="" />
+
+                <div>
+                  <p>{Weatherdata.Humidity}%</p>
+                  <p>Humidity</p>
+                </div>
+              </div>
+
+              <div className="w-1/2 flex items-center justify-evenly">
+                <img className="w-10 h-10" src={windy} alt="" />
+                <div>
+                  <p> {Weatherdata.Wind}km/h</p>
+                  <p>Wind Speed</p>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </>
   );
